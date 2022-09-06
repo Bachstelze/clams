@@ -67,6 +67,8 @@ def eval_marvin(language):
             print(i,time.time()-start,file=result_file)
             start=time.time()
             sys.stdout.flush()
-            
+
+languages = ["de","en","ru","fr","he"]            
+
 for lang in languages:
   eval_marvin(lang)
