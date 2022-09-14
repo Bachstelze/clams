@@ -35,8 +35,8 @@ def get_single_word_score(sent,target_word,target_end,word_combination, scores):
   return None
 
 def get_probs_for_words(sent,w1,w2):
-  score1 = get_single_word_score(sent,w1,w1,result_file,"",[])
-  score2 = get_single_word_score(sent,w2,w2,result_file,"",[])
+  score1 = get_single_word_score(sent,w1,w1,"",[])
+  score2 = get_single_word_score(sent,w2,w2,"",[])
 
   if score1 is not None and score2 is not None:
     print(sent)
