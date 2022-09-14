@@ -13,7 +13,7 @@ fill_pipeline = pipeline("fill-mask",
                model=multilingual_model,
                tokenizer=multilingual_tokenizer)
 
-def get_single_word_score(sent,target_word,target_end,result_file,word_combination, scores):
+def get_single_word_score(sent,target_word,target_end,word_combination, scores):
   pre,target,post=sent.split('***')
   combined_sentence = pre + word_combination + multilingual_tokenizer.mask_token + post
   filled_sentence = fill_pipeline(combined_sentence, targets=[target_end])
@@ -27,14 +27,14 @@ def get_single_word_score(sent,target_word,target_end,result_file,word_combinati
     # the predicted token is not the target word,
     # but the the filled token is part of the target word
     new_sent = pre + filled_token + '***mask***' + post
-    return get_single_word_score(sent,target_word,target_end[len(filled_token):],result_file,word_combination,scores)
+    return get_single_word_score(sent,target_word,target_end[len(filled_token):],word_combination,scores)
 
   # the predicted token is not the target word
   # and the filled taoken is not part of the target word.
   print("No score for " + target_word)
   return None
 
-def get_probs_for_words(sent,w1,w2,result_file):
+def get_probs_for_words(sent,w1,w2):
   score1 = get_single_word_score(sent,w1,w1,result_file,"",[])
   score2 = get_single_word_score(sent,w2,w2,result_file,"",[])
 
@@ -44,7 +44,7 @@ def get_probs_for_words(sent,w1,w2,result_file):
     print(w2 + " " +str(score2))
     return [score1, score2]
 
-  print("skipping",w1,w2,"bad wins",file=result_file)
+  print("skipping",w1,w2,"bad wins")
   return None
 
 def load_marvin(lang):
