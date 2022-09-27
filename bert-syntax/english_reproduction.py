@@ -76,16 +76,18 @@ for lang in languages:
 
         line_result[line_number] = [[word1, word2], {word1:[], word2:[]}]
 
-
-    remove_tokens = ["swims", "swim", "admires", "admire", "laugh", "laughs",
-    "hates", "hate", "enjoys", "enjoy", "like", "likes", "smile", "smiles"]
+    if model_name == 'bert-base-multilingual-cased':
+        remove_tokens = ["swims", "swim", "admires", "admire", "laugh", "laughs",
+        "hates", "hate", "enjoys", "enjoy", "like", "likes", "smile", "smiles"]
+    else:
+        remove_tokens = ["swims", "swim","admires", "admire"]
     for remove_token in remove_tokens:
         target_tokens.remove(remove_token)
     print(target_tokens)
-    """
+
     for token in target_tokens:
         fill_pipeline( en_tokenizer.mask_token, targets=[token])
-    """
+
 
 
     print(len(target_tokens))
