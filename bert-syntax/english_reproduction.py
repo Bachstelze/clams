@@ -5,8 +5,9 @@ import sys
 import csv
 from collections import Counter
 
-# Use enlish model
-model_name = 'bert-base-uncased' # 'bert-base-multilingual-cased'
+# Use english model
+model_name = 'bert-base-multilingual-cased' # multilingual
+#model_name = 'bert-base-uncased' # monolingual
 en_tokenizer = AutoTokenizer.from_pretrained(model_name)
 en_model = AutoModelForMaskedLM.from_pretrained(model_name, is_decoder=False)
 #model.eval()
@@ -76,17 +77,28 @@ for lang in languages:
 
         line_result[line_number] = [[word1, word2], {word1:[], word2:[]}]
 
+    out_of_vocabulary_tokens = []
+
+    for token in target_tokens:
+        token_str = fill_pipeline(en_tokenizer.mask_token, targets=[token])[0]['token_str']
+        if token_str != token:
+            out_of_vocabulary_tokens.append(token)
+
+    print(out_of_vocabulary_tokens)
+    """
     if model_name == 'bert-base-multilingual-cased':
         remove_tokens = ["swims", "swim", "admires", "admire", "laugh", "laughs",
         "hates", "hate", "enjoys", "enjoy", "like", "likes", "smile", "smiles"]
     else:
         remove_tokens = ["swims", "swim","admires", "admire"]
-    for remove_token in remove_tokens:
+    """
+
+    for remove_token in out_of_vocabulary_tokens:
         target_tokens.remove(remove_token)
     print(target_tokens)
 
     for token in target_tokens:
-        fill_pipeline( en_tokenizer.mask_token, targets=[token])
+        fill_pipeline(en_tokenizer.mask_token, targets=[token])
 
 
 
@@ -117,7 +129,7 @@ for lang in languages:
         case, lang, sentence, w1, w2 = test_list[line_number]
 
         # only process if we calculated the scores
-        if w1 in target_tokens:
+        if w1 in target_tokens and w2 in target_tokens:
             word1 = line_result[line_number][0][0]
             word2 = line_result[line_number][0][1]
             case1, score1 = line_result[line_number][1][word1]
