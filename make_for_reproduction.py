@@ -31,4 +31,3 @@ for lang in languages:
                   else:
                       ug = sentence
                       outfile.write(test_case+'\t'+lang+'\t'+g+'\t'+ug+'\n')
-
