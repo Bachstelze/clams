@@ -1,6 +1,7 @@
 # Cross-Linguistic Assessment of Models on Syntax
+The [Reproducing targeted syntactic evaluations of language models](https://raw.githubusercontent.com/Bachstelze/clams/master/Testing_the_reproducibility_of_syntactic_language_model_evaluations-2023.pdf) is based on CLAMS (*Cross-Linguistic Syntactic Evaluation of Word Prediction Models*, Mueller et al., ACL 2020).
 
-Source and instructions required for replicating the CLAMS paper (*Cross-Linguistic Syntactic Evaluation of Word Prediction Models*, Mueller et al., ACL 2020).
+Source and instructions required for replicating the [CLAMS paper](https://aclanthology.org/2020.acl-main.490.pdf).
 
 In this repository, we provide the following:
 
