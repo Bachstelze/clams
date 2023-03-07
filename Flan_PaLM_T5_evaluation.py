@@ -187,7 +187,8 @@ def generate_table(result_file_name):
       c1 = c1.replace("inanim","anim")
       conditions.add(c1)
       results[c1][res]+=1
-
+  
+  lines.close()
   print("skipped:",skipped)
 
   print("condition & base & large & count \\\\")
@@ -214,6 +215,7 @@ for lang in languages:
 
     # print the results into the result file
     print_results(test_list, target_tokens, line_result, result_file)
+    result_file.close()
     
     # summarize the results
     generate_table(result_file_name)
