@@ -94,7 +94,6 @@ def get_target_score(sentences, target, beam_searches=2):
   Parameters:
     text(String): The input text with <extra_id_0> as mask
     target(String): The target word
-    max_number(int): The maximum number of processed sentences at once
     beam_searches(int): The number of beam searches and results
   """
 
@@ -105,7 +104,7 @@ def get_target_score(sentences, target, beam_searches=2):
   #print(target, encoded_target_ids)
   token_number = len(encoded_target_ids)
 
-  # chunk the sentences
+  # chunk the sentences into the maximum number of processed sentences at once
   sentence_list_chunks = list(chunks(sentences, batch_size))
 
   for sentence_list in sentence_list_chunks:
