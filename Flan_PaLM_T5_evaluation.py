@@ -13,9 +13,9 @@ DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 t5_tokenizer = T5Tokenizer.from_pretrained(modelname)
 t5_config = T5Config.from_pretrained(modelname)
-print(t5_config)
+#print(t5_config)
 t5_mlm = T5ForConditionalGeneration.from_pretrained(modelname, config=t5_config).to(DEVICE)
-t5_mlm.eval()
+#t5_mlm.eval()
 t5_tokenizer.mask_token = "<extra_id_0>"
 
 def read_test(lang, directory, file_name):
@@ -164,7 +164,7 @@ languages = ["de","en","ru","fr","he"]
 
 for lang in languages:
     result_file_name = lang+'_result_with_'+modelname+'.txt'
-    result_file=open(result_file_name, 'w')
+    result_file=open(result_file_name, 'a')
     test_list = read_test(lang, ".", "_forbert_subset.tsv")
     target_tokens = clams.get_target_tokens(test_list)
     print("target_tokens:")
