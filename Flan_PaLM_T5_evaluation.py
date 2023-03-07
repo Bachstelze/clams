@@ -142,7 +142,7 @@ def map_reduce_scores(target_tokens, datasets, target_scores, dataset_mapping, d
         print(target_token)
         filled_line = get_target_score(datasets[target_token], target_token)
         target_scores[target_token].extend(filled_line)
-    print(target_scores['laughs'])
+
     # summarize to scores for each line
     for target_token in target_tokens:
         for array_id, test_number in enumerate(dataset_mapping[target_token]):
