@@ -14,7 +14,7 @@ DEVICE = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 t5_tokenizer = T5Tokenizer.from_pretrained(modelname)
 t5_config = T5Config.from_pretrained(modelname)
 #print(t5_config)
-t5_mlm = T5ForConditionalGeneration.from_pretrained(modelname, config=t5_config).to(DEVICE)
+t5_model = T5ForConditionalGeneration.from_pretrained(modelname, config=t5_config).to(DEVICE)
 #t5_mlm.eval()
 t5_tokenizer.mask_token = "<extra_id_0>"
 
