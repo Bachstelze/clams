@@ -54,6 +54,39 @@ def get_target_tokens(test_list):
         target_tokens.add(line[-1])
         target_tokens.add(line[-2])
     return target_tokens
+  
+def prepare_dataset_dictionaries(tokenizer, test_list, target_tokens):
+    """
+    preparation for a map reduce like algorithm
+    the target token is the key of the dictionaries
+    """
+    datasets = {}
+    dataset_mapping = {}
+    dataset_cases = {}
+    target_scores = {}
+    for target_token in list(target_tokens):
+        datasets[target_token] = []
+        dataset_mapping[target_token] = []
+        dataset_cases[target_token] = []
+        target_scores[target_token] = []
+
+    line_result = {} # the line is the key
+    for line_number, line in enumerate(test_list):
+        case,tp,s,word1,word2 = line
+        pre,target,post=s.split('***')
+        combined_sentence = pre + tokenizer.mask_token + post
+
+        datasets[word1].append(combined_sentence)
+        dataset_mapping[word1].append(line_number)
+        dataset_cases[word1].append(case)
+
+        datasets[word2].append(combined_sentence)
+        dataset_mapping[word2].append(line_number)
+        dataset_cases[word2].append(case)
+
+        line_result[line_number] = [[word1, word2], {word1:[], word2:[]}]
+
+    return datasets, dataset_mapping, dataset_cases, target_scores, line_result
     
 def get_target_score(sentences, target, beam_searches=2):
   """
