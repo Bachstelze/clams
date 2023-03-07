@@ -43,7 +43,7 @@ def read_test(lang, directory, file_name):
   return out
 
 def chunks(full_list, max_number):
-  n = math.ceil(len(full_list)/max_number)
+  n = math.ceil(len(full_list)/int(max_number))
   """Yield successive n-sized chunks from lst."""
   for i in range(0, len(full_list), n):
     yield full_list[i:i + n]
@@ -203,8 +203,8 @@ def generate_table(result_file_name):
 languages = ["de","en","ru","fr","he"]
 
 for lang in languages:
-    result_file_name = lang+'_result_with_'+modelname+'.txt'
-    result_file=open(result_file_name, 'a')
+    result_file_name = lang+'_result_with_'+modelname.split("/")[-1]+'.txt'
+    result_file=open(result_file_name, 'w')
     test_list = read_test(lang, ".", "_forbert_subset.tsv")
     target_tokens = get_target_tokens(test_list)
     print("target_tokens:")
