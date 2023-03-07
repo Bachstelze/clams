@@ -48,6 +48,13 @@ def chunks(full_list, max_number):
   for i in range(0, len(full_list), n):
     yield full_list[i:i + n]
     
+def get_target_tokens(test_list):
+    target_tokens = set()
+    for line in test_list:
+        target_tokens.add(line[-1])
+        target_tokens.add(line[-2])
+    return target_tokens
+    
 def get_target_score(sentences, target, beam_searches=2):
   """
   The inference function for the mask fill-in
