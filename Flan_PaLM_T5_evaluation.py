@@ -206,10 +206,10 @@ for lang in languages:
     result_file_name = lang+'_result_with_'+modelname+'.txt'
     result_file=open(result_file_name, 'a')
     test_list = read_test(lang, ".", "_forbert_subset.tsv")
-    target_tokens = clams.get_target_tokens(test_list)
+    target_tokens = get_target_tokens(test_list)
     print("target_tokens:")
     print(target_tokens)
-    datasets, dataset_mapping, dataset_cases, target_scores, line_result = clams.prepare_dataset_dictionaries(t5_tokenizer, test_list, target_tokens)
+    datasets, dataset_mapping, dataset_cases, target_scores, line_result = prepare_dataset_dictionaries(t5_tokenizer, test_list, target_tokens)
     # calculate the scores for each target token
     map_reduce_scores(target_tokens, datasets, target_scores, dataset_mapping, dataset_cases, line_result)
 
