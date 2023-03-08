@@ -206,6 +206,30 @@ def print_results(result_file_name, lang, lang_result_dict):
       #print(" & ".join(map(str,[cond, sb, sl, sum(rb.values())])),"\\\\")
       print(" & ".join(map(str,[cond, sb, sum(rb.values())])),"\\\\")
       lang_result_dict[lang][cond] = sb
+      
+table_string_start = """
+\begin{table*}
+    \begin{tabular}{|l|c|c|c|c|c|}
+        \hline & English & French & German & Hebrew & Russian\\
+"""
+table_string_end = """\n
+        \hline \end{tabular} 
+        \caption{Evaluating Flan-PaLM-T5 with CLAMS TODO add modelname} 
+    \label{table:table7} 
+\end{table*}
+"""
+table_line_start = "\hline Across object relative clause & 0.87 | \textbf{0.86 | 0.67} & \textbf{0.86 | 0.86 | 0.71} & 0.93 | \textbf{1.00 | 0.95} & \textbf{0.55 | 0.55} | 0.97 & \textbf{0.67 | 0.67 | 0.97}\\"
+hard_conditions = ["obj_rel_across_anim","subj_rel","obj_rel_within_anim","vp_coord","long_vp_coord","simple_agrmt","prep_anim"]
+
+def print_table():
+  complete_table = table_string_start
+  for lang in languages:
+    for condition in conditions:
+      complete_table += "\n \hline " + condition
+      complete_table += " & " + lang_result_dict[lang][condition]
+    complete_table += "\\"
+  complete_table += table_string_end
+  print(complete_table)
             
 #languages = ["de","en","ru","fr","he"]
 languages = ["de","en","fr"]
@@ -229,3 +253,5 @@ for lang in languages:
     # summarize the results
     print_results(result_file_name, lang, lang_result_dict)
     print(lang_result_dict)
+    
+print_table()
