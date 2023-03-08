@@ -240,7 +240,7 @@ def print_table():
     complete_table += "\\\\"
 
   # calculte the overall average and per language
-  complete_table += "\n \\hline average "
+  complete_table += "\n \\hline Average "
   overall_summation = 0.0
   for lang in languages:
     lang_summation = 0.0
@@ -248,7 +248,7 @@ def print_table():
       lang_summation += float(lang_result_dict[lang][condition])
     lang_average = lang_summation/len(hard_conditions)
     overall_summation += lang_average
-    complete_table += " & " + str(lang_average)
+    complete_table += " & " + "{:.2f}".format(lang_average)
   overall_average = overall_summation/len(languages)
 
   complete_table += table_string_middle
