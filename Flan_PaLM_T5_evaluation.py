@@ -245,7 +245,7 @@ def print_table():
   for lang in languages:
     lang_summation = 0.0
     for condition in hard_conditions:
-      lang_summation =+ float(lang_result_dict[lang][condition])
+      lang_summation += float(lang_result_dict[lang][condition])
     lang_average = lang_summation/len(hard_conditions)
     overall_summation += lang_average
     complete_table += " & " + str(lang_average)
