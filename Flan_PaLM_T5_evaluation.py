@@ -136,7 +136,7 @@ def get_target_score(sentences, target, beam_searches=2):
     # there are too less scores!
     # repeat with a biger beam search
     print("too little beam search for target: " + target)
-    return get_target_score(sentences, target, beam_searches+2)
+    #return get_target_score(sentences, target, beam_searches+2)
   
   # return the aggregated result
   return results
@@ -205,7 +205,8 @@ def generate_table(result_file_name):
       #print(" & ".join(map(str,[cond, sb, sl, sum(rb.values())])),"\\\\")
       print(" & ".join(map(str,[cond, sb, sum(rb.values())])),"\\\\")
             
-languages = ["de","en","ru","fr","he"]
+#languages = ["de","en","ru","fr","he"]
+languages = ["de","en","fr"]
 
 for lang in languages:
     result_file_name = lang+'_result_with_'+modelname.split("/")[-1]+'.txt'
