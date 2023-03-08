@@ -208,7 +208,7 @@ def print_results(result_file_name, lang, lang_result_dict):
       lang_result_dict[lang][cond] = sb
       
 table_string_start = """
-\\begin{table*}
+\\begin{table}
     \\begin{tabular}{|l|c|c|c|}
         \\hline & English & French & German\\\\
 """
@@ -216,7 +216,7 @@ table_string_end = """\n
         \\hline \\end{tabular} 
         \\caption{Evaluating Flan-PaLM-T5 with CLAMS TODO add modelname and edit table label} 
     \\label{table:table7} 
-\\end{table*}
+\\end{table}
 """
 hard_conditions = ["obj_rel_across_anim","subj_rel","obj_rel_within_anim","vp_coord","long_vp_coord","simple_agrmt","prep_anim"]
 
