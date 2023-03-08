@@ -209,8 +209,8 @@ def print_results(result_file_name, lang, lang_result_dict):
       
 table_string_start = """
 \\begin{table*}
-    \\begin{tabular}{|l|c|c|c|c|c|}
-        \\hline & English & French & German & Hebrew & Russian\\
+    \\begin{tabular}{|l|c|c|c|}
+        \\hline & English & French & German\\
 """
 table_string_end = """\n
         \\hline \\end{tabular} 
@@ -231,7 +231,7 @@ def print_table():
   print(complete_table)
             
 #languages = ["de","en","ru","fr","he"]
-languages = ["de","en","fr"]
+languages = ["en","fr","de"]
 lang_result_dict = {}
 
 for lang in languages:
