@@ -212,9 +212,10 @@ table_string_start = """
     \\begin{tabular}{|l|c|c|c|}
         \\hline & English & French & German\\\\
 """
-table_string_end = """\n
-        \\hline \\end{tabular} 
-        \\caption{Evaluating Flan-PaLM-T5 with CLAMS TODO add modelname and edit table label} 
+table_string_middle = """\n
+        \\\\\\hline \\end{tabular} 
+        \\caption{Evaluation of """
+table_string_end = """} 
     \\label{table:table7} 
 \\end{table}
 """
@@ -228,13 +229,30 @@ hard_conditions_mapping = {
   "simple_agrmt":"Simple agreement",
   "prep_anim":"Across prep. phrase "
 }
+
 def print_table():
   complete_table = table_string_start
+  # add the results to the list
   for condition in hard_conditions:
     complete_table += "\n \\hline " + hard_conditions_mapping[condition]
     for lang in languages:
       complete_table += " & " + lang_result_dict[lang][condition]
     complete_table += "\\\\"
+
+  # calculte the overall average and per language
+  complete_table += "\n \\hline average "
+  overall_summation = 0.0
+  for lang in languages:
+    lang_summation = 0.0
+    for condition in hard_conditions:
+      lang_summation =+ float(lang_result_dict[lang][condition])
+    lang_average = lang_summation/len(hard_conditions)
+    overall_summation += lang_average
+    complete_table += " & " + str(lang_average)
+  overall_average = overall_summation/len(languages)
+
+  complete_table += table_string_middle
+  complete_table += modelname + " with an overall average of " + "{:.2f}".format(overall_average)
   complete_table += table_string_end
   print(complete_table)
             
