@@ -219,12 +219,20 @@ table_string_end = """\n
 \\end{table}
 """
 hard_conditions = ["obj_rel_across_anim","subj_rel","obj_rel_within_anim","vp_coord","long_vp_coord","simple_agrmt","prep_anim"]
-
+hard_conditions_mapping = {
+  "obj_rel_across_anim":"Across subject rel. clause",
+  "subj_rel":"Across subject rel. clause",
+  "obj_rel_within_anim":"Within object rel. clause",
+  "vp_coord":"Short VP coordination",
+  "long_vp_coord":"Long VP coordination",
+  "simple_agrmt":"Simple agreement",
+  "prep_anim":"Across prep. phrase "
+}
 def print_table():
   complete_table = table_string_start
-  for lang in languages:
-    for condition in hard_conditions:
-      complete_table += "\n \\hline & " + condition
+  for condition in hard_conditions:
+    complete_table += "\n \\hline " + hard_conditions_mapping[condition]
+    for lang in languages:
       complete_table += " & " + lang_result_dict[lang][condition]
     complete_table += "\\\\"
   complete_table += table_string_end
