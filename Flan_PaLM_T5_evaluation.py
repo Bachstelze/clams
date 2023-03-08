@@ -210,7 +210,7 @@ def print_results(result_file_name, lang, lang_result_dict):
 table_string_start = """
 \\begin{table*}
     \\begin{tabular}{|l|c|c|c|}
-        \\hline & English & French & German\\
+        \\hline & English & French & German\\\\
 """
 table_string_end = """\n
         \\hline \\end{tabular} 
@@ -224,9 +224,9 @@ def print_table():
   complete_table = table_string_start
   for lang in languages:
     for condition in hard_conditions:
-      complete_table += "\n \\hline " + condition
+      complete_table += "\n \\hline & " + condition
       complete_table += " & " + lang_result_dict[lang][condition]
-    complete_table += "\\"
+    complete_table += "\\\\"
   complete_table += table_string_end
   print(complete_table)
             
