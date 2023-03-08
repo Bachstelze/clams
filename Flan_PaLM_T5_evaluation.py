@@ -224,7 +224,7 @@ hard_conditions = ["obj_rel_across_anim","subj_rel","obj_rel_within_anim","vp_co
 def print_table():
   complete_table = table_string_start
   for lang in languages:
-    for condition in conditions:
+    for condition in hard_conditions:
       complete_table += "\n \hline " + condition
       complete_table += " & " + lang_result_dict[lang][condition]
     complete_table += "\\"
