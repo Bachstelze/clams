@@ -156,7 +156,7 @@ def map_reduce_scores(target_tokens, datasets, target_scores, dataset_mapping, d
             
             
 
-def print_results(test_list, target_tokens, line_result, result_file):
+def save_files(test_list, target_tokens, line_result, result_file):
     for line_number in range(len(test_list)):
         #load values from the loaded data
         case, lang, sentence, w1, w2 = test_list[line_number]
@@ -176,7 +176,8 @@ def print_results(test_list, target_tokens, line_result, result_file):
             # print the results to the defined file
             print(correctness, case, lang, w1, str(score1), w2, str(score2), sentence,file=result_file)
             
-def generate_table(result_file_name):
+def print_results(result_file_name, lang, lang_result_dict):
+  lang_result_dict[lang] = {}
   by_model={}
   conditions=set()
   lines = open(result_file_name)
@@ -204,9 +205,11 @@ def generate_table(result_file_name):
       #sl = "%.2f" % (rl['True']/(rl['True']+rl['False']))
       #print(" & ".join(map(str,[cond, sb, sl, sum(rb.values())])),"\\\\")
       print(" & ".join(map(str,[cond, sb, sum(rb.values())])),"\\\\")
+      lang_result_dict[lang][cond] = sb
             
 #languages = ["de","en","ru","fr","he"]
 languages = ["de","en","fr"]
+lang_result_dict = {}
 
 for lang in languages:
     result_file_name = lang+'_result_with_'+modelname.split("/")[-1]+'.txt'
@@ -220,8 +223,9 @@ for lang in languages:
     map_reduce_scores(target_tokens, datasets, target_scores, dataset_mapping, dataset_cases, line_result)
 
     # print the results into the result file
-    print_results(test_list, target_tokens, line_result, result_file)
+    save_files(test_list, target_tokens, line_result, result_file)
     result_file.close()
     
     # summarize the results
-    generate_table(result_file_name)
+    print_results(result_file_name, lang, lang_result_dict)
+    print(lang_result_dict)
