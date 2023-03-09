@@ -150,7 +150,12 @@ def map_reduce_scores(target_tokens, datasets, target_scores, dataset_mapping, d
     for target_token in target_tokens:
         for array_id, test_number in enumerate(dataset_mapping[target_token]):
             case = dataset_cases[target_token][array_id]
-            score = target_scores[target_token][array_id][0]
+            if array_id < len(target_scores[target_token]):
+              score = target_scores[target_token][array_id][0]
+            else:
+              score = -1
+              print("Warning: List out of index with target token "+target_token)
+              print("Array id: ",str(array_id))
             line_result[test_number][1][target_token] = [case, score]
             
             
