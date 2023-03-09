@@ -135,7 +135,7 @@ def get_target_score(sentences, target, beam_searches=2):
     # there are too less scores!
     # repeat with a biger beam search
     print("too little beam search for target: " + target)
-    #return get_target_score(sentences, target, beam_searches+2)
+    return get_target_score(sentences, target, beam_searches+10)
   
   # return the aggregated result
   return results
