@@ -137,6 +137,8 @@ def get_target_score(sentences, target, beam_searches=2):
     print("too little beam search for target: " + target)
     return get_target_score(sentences, target, beam_searches+10)
   
+  #empty the gpu cache
+  torch.cuda.empty_cache()
   # return the aggregated result
   return results
 
