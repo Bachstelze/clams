@@ -43,10 +43,9 @@ def read_test(lang, directory, file_name):
   return out
 
 def chunks(full_list, max_number):
-  n = math.ceil(len(full_list)/int(max_number))
-  """Yield successive n-sized chunks from lst."""
-  for i in range(0, len(full_list), n):
-    yield full_list[i:i + n]
+  """Yield successive batch-sized chunks from the full list."""
+  for i in range(0, len(full_list), int(max_number)):
+    yield full_list[i:i + int(max_number)]
     
 def get_target_tokens(test_list):
     target_tokens = set()
