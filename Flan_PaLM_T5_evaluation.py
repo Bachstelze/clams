@@ -135,7 +135,8 @@ def get_target_score(sentences, target, beam_searches=2):
     # there are too less scores!
     # repeat with a biger beam search
     print("too little beam search for target: " + target)
-    return get_target_score(sentences, target, beam_searches+10)
+    print("All scores for this target token are recalculated.")
+    return get_target_score(sentences, target, beam_searches+1)
   
   #empty the gpu cache
   torch.cuda.empty_cache()
