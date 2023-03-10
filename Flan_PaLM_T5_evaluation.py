@@ -228,7 +228,7 @@ table_string_end = """}
 """
 hard_conditions = ["obj_rel_across_anim","subj_rel","obj_rel_within_anim","vp_coord","long_vp_coord","simple_agrmt","prep_anim"]
 hard_conditions_mapping = {
-  "obj_rel_across_anim":"Across subject rel. clause",
+  "obj_rel_across_anim":"Across object rel. clause",
   "subj_rel":"Across subject rel. clause",
   "obj_rel_within_anim":"Within object rel. clause",
   "vp_coord":"Short VP coordination",
