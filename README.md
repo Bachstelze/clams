@@ -1,9 +1,9 @@
 # Cross-Linguistic Assessment of Models on Syntax
 The Code for [Evaluating PaLM-FLAN-T5 and previous models on syntax](https://github.com/Bachstelze/clams/blob/master/combined_Evaluating_PaLM_Flan_T5_on_Syntax_20_03.pdf) is mainly in Flan_PaLM_T5_evaluation.py
 
-[Reproducing targeted syntactic evaluations of language models](https://raw.githubusercontent.com/Bachstelze/clams/master/Testing_the_reproducibility_of_syntactic_language_model_evaluations-2023.pdf) is based on CLAMS (*Cross-Linguistic Syntactic Evaluation of Word Prediction Models*, Mueller et al., ACL 2020).
+[Reproducing targeted syntactic evaluations of language models](https://raw.githubusercontent.com/Bachstelze/clams/master/Testing_the_reproducibility_of_syntactic_language_model_evaluations-2023.pdf) is based on [CLAMS](https://aclanthology.org/2020.acl-main.490) (*Cross-Linguistic Syntactic Evaluation of Word Prediction Models*, Mueller et al., ACL 2020).
 
-Source and instructions required for replicating the [CLAMS paper](https://aclanthology.org/2020.acl-main.490).
+## Source and instructions required for replicating the CLAMS paper:
 
 In this repository, we provide the following:
 
